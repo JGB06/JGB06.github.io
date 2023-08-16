@@ -2,3 +2,25 @@ body {
     background-color: rgb(223, 238, 255) !important;
 
 }
+
+@media (min-width: 320px) {
+    .carousel-inner {
+        max-height:200px;
+    }
+}
+@media (min-width: 400px) {
+    .carousel-inner {
+        max-height:200px;
+    }
+}
+
+@media (min-width: 500px) {
+    .carousel-inner {
+        max-height:300px;
+    }
+}
+@media (min-width: 700px) {
+    .carousel-inner {
+        max-height:500px;
+    }
+}
