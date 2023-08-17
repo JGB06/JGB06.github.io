@@ -24,3 +24,8 @@ body {
         max-height:500px;
     }
 }
+
+model-viewer {
+    width: 300px ;
+    height: 300px;
+}

@@ -74,6 +74,7 @@
       </button>
     </div>
   </section>
+  
   <article class="container mt-2">
     <div class="card-header text-center" style="background-color: rgb(226, 240, 255)">
       <h3>PRESIÓN ABSOLUTA</h3>
@@ -83,6 +84,11 @@
     <div class="card-footer text-body-secondary text-center">
       <p>VARIABLE H</p>
     </div>
+    <!--Model3d-->
+    <div>
+      <model-viewer class="container mt-5 mb-5" src="assets/Untitled.glb" camera-controls auto-rotate shadow-intensity="3"></model-viewer>
+    </div>
+    <!--Form Altura-->
     </div>
     <div div class="card text-center " style="background-color: rgb(226, 240, 255)">
       <div class="container mt-4 py-5">
@@ -99,16 +105,13 @@
       </div>
     </div>
   </article>
-
-
-
   <!-- Características Destacadas -->
   <section id="caracteristicas" class="bg-light py-5" style="background-color: rgb(226, 240, 255)">
     <div class="container" style="background-color: rgb(226, 240, 255)">
       <h2 class="text-center mb-4">Características Destacadas</h2>
       <div class="row">
         <div class="col-md-4 mb-4">
-          <div class="card">
+          <div class="card ">
             <div class="card-body" style=>
               <h3 class="card-title">Diseño Elegante (Ponele)</h3>
               <p class="card-text">MANOmeter tiene un diseño moderno y atractivo.</p>
@@ -151,7 +154,7 @@
       document.getElementById('result').innerHTML = `<p>El resultado de P1 es: <strong>${result}</strong>Kilo Pascales</p>`;
     });
   </script>
-  <model-viewer src="assets/Untitled.glb"> </model-viewer>
+  
 
 </body>
 
