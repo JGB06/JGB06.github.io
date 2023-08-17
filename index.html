@@ -5,16 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Producto Destacado</title>
+
+<!--CSS Style-->
+
   <link rel="stylesheet" href="css/style.css">
-  <!-- Agrega el enlace al archivo CSS de Bootstrap -->
+
+<!-- CSS Bootstrap -->
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+
 </head>
 
 <body>
 
-  <!-- Navbar -->
+
+<!-- Navbar -->
+
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">Manometro</a>
@@ -39,6 +48,8 @@
     </div>
   </nav>
 
+
+<!--Carousel-->
 
 
   <section class="mb-3" style="background-color: rgb(226, 240, 255)">
@@ -74,7 +85,11 @@
       </button>
     </div>
   </section>
-  
+
+
+<!--Cuerpo-->
+
+
   <article class="container mt-2">
     <div class="card-header text-center" style="background-color: rgb(226, 240, 255)">
       <h3>PRESIÓN ABSOLUTA</h3>
@@ -88,7 +103,11 @@
     <div>
       <model-viewer class="container mt-5 mb-5" src="assets/Untitled.glb" camera-controls auto-rotate shadow-intensity="3"></model-viewer>
     </div>
+
+
     <!--Form Altura-->
+
+
     </div>
     <div div class="card text-center " style="background-color: rgb(226, 240, 255)">
       <div class="container mt-4 py-5">
@@ -105,7 +124,13 @@
       </div>
     </div>
   </article>
-  <!-- Características Destacadas -->
+
+
+
+  <!--Relleno e Informacion -->
+
+
+
   <section id="caracteristicas" class="bg-light py-5" style="background-color: rgb(226, 240, 255)">
     <div class="container" style="background-color: rgb(226, 240, 255)">
       <h2 class="text-center mb-4">Características Destacadas</h2>
@@ -135,26 +160,34 @@
 
 
   <!-- Pie de Página -->
+
+
   <footer class="bg-dark text-white text-center py-3">
     <div id="foot" class="container">
       <p>&copy; 2023 MANOmeter. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <!-- Agregar el enlace al script de Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-    crossorigin="anonymous"></script>
 
-  <script>
-    document.getElementById('multiplicator-form').addEventListener('submit', function (event) {
+<!-- Script - Bootstrap-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<!--Script Form-->
+
+  <script> document.getElementById('multiplicator-form').addEventListener('submit', function (event) {
       event.preventDefault();
       const number1 = parseFloat(document.getElementById('number1').value);
       const result = (number1 * 0.01 * 1000 * 9.81 + 101325) * 0.001;
       document.getElementById('result').innerHTML = `<p>El resultado de P1 es: <strong>${result}</strong>Kilo Pascales</p>`;
     });
   </script>
-  
+
+
+<!--Script Model-View-->
+
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
 
 </body>
 
