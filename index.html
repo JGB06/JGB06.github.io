@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Producto Destacado</title>
+  <title>JNTHNSITE</title>
+  <link rel="icon" href="icon.png">
 
   <!--CSS Style-->
 
@@ -24,7 +25,7 @@
   <!-- Navbar -->
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav id="navbar" class="container navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">Manometro</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -52,7 +53,7 @@
   <!--Carousel-->
 
 
-  <section class="mb-3" style="background-color: #3e4451">
+  <section class="mb-3" style="background-color: #2c2f33">
     <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -89,34 +90,35 @@
 
   <!--Cuerpo-->
 
+  <main>
+    <article class="container mt-2">
+      <div class="card-header text-center" style="color: rgb(216, 216, 216); background-color:#2c2f33;">
+        <h3 id="Pabs" class="">PRESIÓN ABSOLUTA</h3>
+      </div class="container">
+      <img id="formula" src="img/FORMULA.png" class="d-block w-100" alt="">
 
-  <article class="container mt-2">
-    <div class="card-header text-center" style="color: rgb(216, 216, 216); background-color:#3e4451;">
-      <h3 class="">PRESIÓN ABSOLUTA</h3>
-    </div class="container">
-    <img id="formula" src="img/FORMULA.png" class="d-block w-100" alt="">
-    </div>
-    <div class="card-footer text-body-secondary text-center">
-      <h4 class="text-center text-light">VARIABLE H</h4>
-    </div>
+      </div>
+      <div class="card-footer text-body-secondary text-center">
+        <h4 class="text-center text-light">VARIABLE H</h4>
+      </div>
+
+    </article>
     <!--Model3d-->
     <div>
-      <model-viewer class="container mt-5 mb-5" src="assets/Untitled.glb" camera-controls auto-rotate
+      <model-viewer class="container mt-5 mb-5" src="assets/model.glb" camera-controls auto-rotate poster
         shadow-intensity="3"></model-viewer>
     </div>
-
-
     <!--Form Altura-->
 
 
     </div>
-    <div div class="card text-center " style="background-color: #3e4451 ">
+    <div div class="card text-center " style="background-color: #2c2f33 ">
       <div class="container mt-4 py-5">
         <h1 class="mb-4 p-3 text-light">FÓRMULA</h1>
         <form id="multiplicator-form">
-          <div div class="card text-center " style="background-color: #3e4451">
-            <div class="form-group p-3 text-light" style="background-color: #3e4451">
-              <label for="number1" style="background-color: #3e4451">ALTURA EN CM:</label>
+          <div div class="card text-center " style="background-color: #2c2f33">
+            <div class="form-group p-3 text-light" style="background-color: #2c2f33">
+              <label for="number1" style="background-color: #2c2f33">ALTURA EN CM:</label>
               <input type="number" class="form-control" id="number1" required>
             </div>
             <button type="submit" class="btn btn-primary">Multiplicar</button>
@@ -124,46 +126,45 @@
         <div id="result" class="mt-3 p-3"></div>
       </div>
     </div>
-  </article>
-
-  
-   <!-- Características Destacadas -->
-
-        <!--Relleno e Informacion -->
-
-        <!-- Pie de Página -->
+  </main>
 
 
-        <footer class="bg-dark text-white text-center py-3">
-          <div id="foot" class="container">
-            <p>&copy; 2023 MANOmeter. Todos los derechos reservados.</p>
-          </div>
-        </footer>
+  <!-- Características Destacadas -->
+
+  <!--Relleno e Informacion -->
+
+  <!-- Pie de Página -->
 
 
-        <!-- Script - Bootstrap-->
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-          crossorigin="anonymous"></script>
-
-        <!--Script Form-->
-
-        <script> document.getElementById('multiplicator-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const number1 = parseFloat(document.getElementById('number1').value);
-            const result = (number1 * 0.01 * 1000 * 9.81 + 101325) * 0.001;
-            document.getElementById('result').innerHTML = `<p>El resultado de P1 es: <strong>${result}</strong>Kilo Pascales</p>`;
-          });
-        </script>
+  <footer class="bg-dark text-white text-center py-3">
+    <div id="foot" class="container">
+      <p>&copy; 2023 MANOmeter. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
 
-        <!--Script Model-View-->
+  <!-- Script - Bootstrap-->
 
-        <script type="module"
-          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
 
-          
+  <!--Script Form-->
+
+  <script> document.getElementById('multiplicator-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const number1 = parseFloat(document.getElementById('number1').value);
+      const result = (number1 * 0.01 * 1000 * 9.81 + 101325) * 0.001;
+      document.getElementById('result').innerHTML = `<p>El resultado de P1 es: <strong>${result}</strong>Kilo Pascales</p>`;
+    });
+  </script>
+
+
+  <!--Script Model-View-->
+
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+
 </body>
 
 </html>
