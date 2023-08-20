@@ -2,11 +2,27 @@ body {
   background-color: #2c2f33 !important;
 }
 
-nav {
-  position: fixed;
+#navbar {
+  z-index:10;
+  position:fixed;
+  top:0;
   overflow: hidden;
-  top: 0;
-  width: 100%;
+}
+@media (min-width: 1px){
+#sliders {
+  margin-top:10vw;
+}
+}
+@media (min-width: 540px){
+  #sliders {
+margin-top: auto;
+  }
+  }
+#Pabs {
+  padding: 2vw;
+  background-color: #3e4451 ;
+  border-radius: 10vw;
+  
 }
 
 #formula {

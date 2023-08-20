@@ -25,9 +25,9 @@
   <!-- Navbar -->
 
 
-  <nav id="navbar" class="container navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Manometro</a>
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+    <div id="navcontent" class="container">
+      <a class="navbar-brand" href="#">JGBSITE</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -53,7 +53,7 @@
   <!--Carousel-->
 
 
-  <section class="mb-3" style="background-color: #2c2f33">
+  <section id="sliders" class="mb-3" style="background-color: #2c2f33">
     <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -90,42 +90,40 @@
 
   <!--Cuerpo-->
 
-  <main>
-    <article class="container mt-2">
+  <main class="container-lg-row">
+    <article class="container-lg-row-col-6 mt-2">
       <div class="card-header text-center" style="color: rgb(216, 216, 216); background-color:#2c2f33;">
-        <h3 id="Pabs" class="">PRESIÓN ABSOLUTA</h3>
-      </div class="container">
-      <img id="formula" src="img/FORMULA.png" class="d-block w-100" alt="">
-
-      </div>
-      <div class="card-footer text-body-secondary text-center">
-        <h4 class="text-center text-light">VARIABLE H</h4>
-      </div>
+        <h3 id="Pabs" class="col-12">PRESIÓN ABSOLUTA</h3>
+        <img id="formula" src="img/FORMULA.png" class="d-block w-100 h-100 container" alt="">
+        <div class="card-footer text-body-secondary text-center">
+          <h4 id="Pabs" class="text-center text-light mt-2">VARIABLE H</h4>
+        </div>
 
     </article>
     <!--Model3d-->
-    <div>
-      <model-viewer class="container mt-5 mb-5" src="assets/model.glb" camera-controls auto-rotate poster
+    <div class="container-lg-row-col-6">
+      <model-viewer class="container mt-5 mb-5" src="assets/Untitled.glb" camera-controls auto-rotate poster
         shadow-intensity="3"></model-viewer>
     </div>
     <!--Form Altura-->
 
-
-    </div>
-    <div div class="card text-center " style="background-color: #2c2f33 ">
-      <div class="container mt-4 py-5">
-        <h1 class="mb-4 p-3 text-light">FÓRMULA</h1>
-        <form id="multiplicator-form">
-          <div div class="card text-center " style="background-color: #2c2f33">
-            <div class="form-group p-3 text-light" style="background-color: #2c2f33">
-              <label for="number1" style="background-color: #2c2f33">ALTURA EN CM:</label>
-              <input type="number" class="form-control" id="number1" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Multiplicar</button>
-        </form>
-        <div id="result" class="mt-3 p-3"></div>
+    <article>
       </div>
-    </div>
+      <div div class="card text-center " style="background-color: #2c2f33 ">
+        <div class="container mt-4 py-5">
+          <h1 class="mb-4 p-3 text-light">FÓRMULA</h1>
+          <form id="multiplicator-form">
+            <div div class="card text-center " style="background-color: #2c2f33">
+              <div class="form-group p-3 text-light" style="background-color: #2c2f33">
+                <label for="number1" style="background-color: #2c2f33">ALTURA EN CM:</label>
+                <input type="number" class="form-control" id="number1" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Multiplicar</button>
+          </form>
+          <div id="result" class="mt-3 p-3"></div>
+        </div>
+      </div>
+    </article>
   </main>
 
 
