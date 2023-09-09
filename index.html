@@ -5,17 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JNTHNSITE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <link rel="icon" href="icon.png">
 
   <!--CSS Style-->
 
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
   <link rel="stylesheet" href="css/style.css">
 
   <!-- CSS Bootstrap -->
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
+<script src="js/imgLiquid.js"></script>
 
 </head>
 
@@ -87,24 +92,53 @@
     </div>
   </section>
 
+  <!--LINK page2-->
+
+  <div class="d-flex align-items-center text-center">
+    <div class="container"><button id="btn-abrir1" class="btn btn-primary ">jugar juego</button></div>
+
+  </div>
 
   <!--Cuerpo-->
 
-  <main class="container-lg-row">
-    <article class="container-lg-row-col-6 mt-2">
-      <div class="card-header text-center" style="color: rgb(216, 216, 216); background-color:#2c2f33;">
-        <h3 id="Pabs" class="col-12">PRESIÓN ABSOLUTA</h3>
-        <img id="formula" src="img/FORMULA.png" class="d-block w-100 h-100 container" alt="">
-        <div class="card-footer text-body-secondary text-center">
-          <h4 id="Pabs" class="text-center text-light mt-2">VARIABLE H</h4>
+
+  <main class="container">
+    <article>
+      <div class="row justify-content-center text-center">
+        <div id="Pabs" class="col-5 ">
+          <h3 id="Pabs">Presion absoluta</h3>
+        </div>
+        <div id="Pabs" class="col-5">
+          <h3 id="Pabs">Variable altura</h3>
+        </div>
+        <div id="" class="row col-10 ">
+
+          <div class="col-12">
+            <img id="formula" src="img/FORMULA.png">
+
+      </div>
+
+      <div id="modelo3d" class="col-12">
+        <div id="popup3d">
+          <a href="#btn-abrir2" id="btn-cerrar-popup2" class="btn-cerrar-popup"> <i class="fas fa-times"></i></a>
+
+          <model-viewer style="width: 450px !important ;
+          height: 450px !important;" src="assets/Untitled.glb" camera-controls auto-rotate poster
+            shadow-intensity="3"></model-viewer>
         </div>
 
-    </article>
+
+      </div>
+
+      <div class="container col-12" id="btnCont" >
+        <img class="boton3d1"  src="img/3dicon.png" alt="">
+        <img class="boton3d2" id="btn-abrir2" src="img/hologram.png" alt="">
+        <h2 class="container align-items-center">MIRA 3D</h2>
+      </div>
+  
+
     <!--Model3d-->
-    <div class="container-lg-row-col-6">
-      <model-viewer class="container mt-5 mb-5" src="assets/Untitled.glb" camera-controls auto-rotate poster
-        shadow-intensity="3"></model-viewer>
-    </div>
+
     <!--Form Altura-->
 
     <article>
@@ -129,14 +163,58 @@
 
   <!-- Características Destacadas -->
 
+
+
+
+
   <!--Relleno e Informacion -->
+
+  <div id="overlay">
+    <div id="popup">
+      <a href="#main" id="btn-cerrar-popup1" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+      <div class="container mt-5">
+        <h1 class="text-center mb-4">Juego</h1>
+        <div id="dice-container" class="text-center">
+          <p hidden id="dice-value" class="display-1 mb-4">1</p>
+          <button id="roll-dice-btn" class="btn btn-primary" onclick="rollDice()">Lanzar Dado</button>
+        </div>
+      </div>
+
+      <div id="cuadro" class="container mt-5">
+        <div id="question-container" class="text-center" style="display: none">
+          <form id="answer-form">
+            <div class="form-group">
+              <label for="answer-message">Mensaje:</label>
+              <input type="text" class="form-control" id="answer-message" readonly>
+            </div>
+            <div class="form-group">
+              <label for="question-value">Valor de la Pregunta:</label>
+              <input type="text" class="form-control" id="question-value" readonly>
+            </div>
+          </form>
+          <h2 id="question" class="mb-4"></h2>
+          <div id="options" class="btn-group-vertical"></div>
+        </div>
+      </div>
+
+      <div class="container mt-5">
+        <div id="score-container" class="text-center mt-4">
+          <h3>Resultado:</h3>
+          <p>Jugador 1: <span id="player1-score">0</span></p>
+          <p>Jugador 2: <span id="player2-score">0</span></p>
+        </div>
+        <button id="next-btn" class="btn btn-primary btn-block mt-4" style="display: none">Siguiente Pregunta</button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Pie de Página -->
 
 
   <footer class="bg-dark text-white text-center py-3">
     <div id="foot" class="container">
-      <p>&copy; 2023 MANOmeter. Todos los derechos reservados.</p>
+      <p>&copy; 2023 JGB06. Todos los derechos reservados.</p>
     </div>
   </footer>
 
@@ -161,8 +239,14 @@
   <!--Script Model-View-->
 
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+  <script src="distribution.js"></script>
+  <script src="game.js"></script>
 
-
+<script>
+  $(document).ready(function() {
+	$("#btnCont").imgLiquid({fill:true});
+});
+</script>
 </body>
 
 </html>
