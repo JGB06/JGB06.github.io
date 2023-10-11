@@ -19,7 +19,16 @@ body {
   top:0;
   overflow: hidden;
 }
-
+.icono {
+  width: 5vh;
+  height: 5vh;
+}
+.nav-link:hover {
+  background-color: #3e4451;
+  border-radius: 10vh;
+  transition: 1s;
+  color: white;
+}
 
 #Pabs {
   margin: 1vh;
