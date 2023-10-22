@@ -1,0 +1,82 @@
+.menu {
+  list-style: none;
+}
+.menu li {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+.contenedorp {
+  
+  padding: 2rem;
+  background-color:#FFE3D3;
+}
+.titulo-principal {
+    text-align: center;
+    margin-bottom: 5rem;
+    text-transform: uppercase;
+    font-weight: bolder;
+    box-shadow: .25rem .25rem .25rem black;
+
+}
+.contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 2rem;
+  background-color: white;
+  padding: 4rem;
+}
+.card img {
+  width: 100%;
+  height: 10rem;
+  transition: 1s;
+  }
+  
+
+.producto-card {
+  background-color: #DB5757;
+  color: white;
+  border-radius: 1rem;
+  opacity: 50%;
+  position: relative;
+  margin-top: -2rem;
+  display: flex;
+  flex-direction: column;
+
+}
+.producto-card:hover {
+  transition: 1s;
+  background-color: black;
+  opacity: 80%;
+}
+.card img:hover {
+  transition: 1s;
+  transform: scale(1.1);
+  
+}
+
+.producto-marca {
+  max-height: 4rem;
+  border-radius: 2rem;
+  margin-bottom: 0.5rem;
+  border: solid .25rem
+}
+
+.producto-precio {
+  text-align: center;
+  background-color: #8EBA00;
+  border-radius: 1rem;
+  
+}
+.producto-agregar {
+  text-transform: uppercase;
+  background-color: azure;
+  border: solid 0.25rem white;
+  border-radius: 2rem;
+  font-weight: bold;
+  transition: 1s;
+}
+.producto-agregar:hover {
+  background-color: #DD4B4B;
+  color: white;
+  transition: 0.4s;
+}
