@@ -3,49 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regalo para [Nombre de tu pareja]</title>
+    <title>Regalo para Orne mi princesa</title>
     <style>
         body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-color: #f0e4d7;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0e4d7;
-            margin: 0;
-            font-family: Arial, sans-serif;
+            position: relative;
+            text-align: center;
         }
 
-        #gift {
-            font-size: 2rem;
+        #question-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
             padding: 20px;
             background-color: #ffb3b3;
             border: 5px solid #ff6666;
             border-radius: 10px;
-            text-align: center;
             cursor: pointer;
+            z-index: 10;
+        }
+
+        #question {
+            margin-bottom: 20px;
+        }
+
+        #button {
+            padding: 10px 20px;
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #button:hover {
+            background-color: #ff3333;
         }
 
         #heart {
             display: none;
             font-size: 5rem;
             color: #ff6666;
+            animation: appear 1s ease-in-out forwards, heartbeat 1s infinite;
+            z-index: 10;
+        }
+
+        @keyframes appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .background {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            opacity: 0;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 3s ease-in-out;
+        }
+
+        #top-left {
+            top: 0;
+            left: 0;
+            background-image: url('imagen1.jpg');
+        }
+
+        #top-right {
+            top: 0;
+            right: 0;
+            background-image: url('imagen2.jpg');
+        }
+
+        #bottom {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-image: url('imagen3.jpg');
+        }
+
+        .te-amo {
+            position: absolute;
+            font-size: 2rem;
+            color: #ff3333;
+            opacity: 0;
+            animation: fadeIn 5s forwards, heartbeat 1.5s infinite, fadeOut 14s forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        #message {
+            display: none;
+            font-size: 1.5rem;
+            color: #e54f4f;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #ff6666;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: appearMessage 2s forwards;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes appearMessage {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-    <div id="gift">
-        🎁
+    <div id="question-container">
+        <div id="question">¿Me amas?</div>
+        <button id="button">chi, te amo</button>
     </div>
 
     <div id="heart">
         ❤️
     </div>
 
+    <div id="top-left" class="background"></div>
+    <div id="top-right" class="background"></div>
+    <div id="bottom" class="background"></div>
+
+    <div id="message">
+        <p>Mi 👑princesa hermosa👑</p>
+        <p>Te convertiste en la persona mas especial de mi vida. Tu sonrisa ilumina mis días y tu amor llena mi corazón. Cada momento con vos es un regalo, y cada día juntitos es una aventura maravillosa. Gracias por ser mi compañera, mi esposa, mi novia, mi confidente y mi gran amor. Te amo más de lo que las palabras pueden expresar. Gracias por estos <strong>8 meses</strong> a mi lado.</p>
+        <p>Con todo mi amor💕 Te amo💕,</p>
+        <p>Att: Tu principe</p>
+    </div>
+
     <script>
-        document.getElementById("gift").addEventListener("click", function() {
-            document.getElementById("gift").style.display = "none";
+        const usedPositions = [];
+
+        document.getElementById("button").addEventListener("click", function() {
+            document.getElementById("question-container").style.display = "none";
             document.getElementById("heart").style.display = "block";
+            setTimeout(function() {
+                document.getElementById("top-left").style.opacity = 1;
+                document.getElementById("top-right").style.opacity = 1;
+                document.getElementById("bottom").style.opacity = 1;
+            }, 1000);
+
+            setTimeout(function() {
+                for (let i = 0; i < 75; i++) {
+                    setTimeout(function() {
+                        createTeAmo();
+                    }, i * 100);
+                }
+            }, 4000);
+
+            setTimeout(function() {
+                document.getElementById("heart").style.animation = 'fadeOut 1s forwards';
+                setTimeout(() => {
+                    document.getElementById("heart").style.display = 'none';
+                    document.getElementById("message").style.display = 'block';
+                }, 5000); // Mostrar el mensaje después de que el corazón se ha desvanecido
+            }, 14000); // Comenzar a desvanecer el corazón después de 10 segundos
         });
+
+        function createTeAmo() {
+            const teAmo = document.createElement('div');
+            teAmo.textContent = 'Te amo';
+            teAmo.className = 'te-amo';
+            document.body.appendChild(teAmo);
+
+            let position = getRandomPosition(teAmo);
+            teAmo.style.left = `${position.x}px`;
+            teAmo.style.top = `${position.y}px`;
+
+            setTimeout(function() {
+                teAmo.style.animation = 'fadeOut 1s forwards';
+                setTimeout(() => {
+                    teAmo.remove();
+                }, 1000); // Eliminar el elemento después de la animación de desvanecimiento
+            }, 10000); // Comenzar a desvanecer después de 10 segundos
+        }
+
+        function getRandomPosition(element) {
+            let x, y, overlap;
+            const maxAttempts = 100;
+            let attempts = 0;
+
+            do {
+                x = Math.random() * (window.innerWidth - element.clientWidth);
+                y = Math.random() * (window.innerHeight - element.clientHeight);
+                overlap = usedPositions.some(pos => isOverlapping(x, y, element.clientWidth, element.clientHeight, pos));
+                attempts++;
+            } while (overlap && attempts < maxAttempts);
+
+            return { x: x, y: y };
+        }
+
+        function isOverlapping(x, y, width, height, pos) {
+            return !(x + width < pos.x || x > pos.x + pos.width || y + height < pos.y || y > pos.y + pos.height);
+        }
     </script>
 </body>
 </html>
