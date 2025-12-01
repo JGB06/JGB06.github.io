@@ -51,48 +51,52 @@
     <script>
         const video = document.getElementById('scrollVideo');
         const title = document.getElementById('titleText');
-
-        // 🔥 Ahora requiere MUCHÍSIMO scroll para avanzar el video
-        const SCROLL_FACTOR = 600;  // antes 200
-
-        // Scroll suave (lerp)
+    
+        const SCROLL_FACTOR = 600;
         let targetTime = 0;
         let currentTime = 0;
         const SMOOTHNESS = 0.08;
-
+    
+        let lastUpdate = 0;
+        const FPS_LIMIT = 12; // Limitar actualizaciones a 12 FPS
+    
         video.addEventListener('loadedmetadata', () => {
-            const duration = video.duration; 
-
-            // 🔥 Mucho más alto el documento
+            const duration = video.duration;
+    
             document.body.style.height = (duration * SCROLL_FACTOR) + "px";
-
+    
             window.addEventListener('scroll', () => {
                 const scrollTop = window.scrollY;
                 const maxScroll = document.body.scrollHeight - window.innerHeight;
-
+    
                 const scrollFraction = scrollTop / maxScroll;
                 const clamped = Math.min(Math.max(scrollFraction, 0), 1);
-
+    
                 targetTime = clamped * duration;
-
-                // Fade del texto al hacer scroll
+    
                 if (scrollTop > 30) {
                     title.style.opacity = 0;
                 } else {
                     title.style.opacity = 1;
                 }
             });
-
-            // Suavizado del avance del video
-            function smoothScrollVideo() {
-                currentTime += (targetTime - currentTime) * SMOOTHNESS;
-                video.currentTime = currentTime;
+    
+            function smoothScrollVideo(timestamp) {
+    
+                // Limitar FPS
+                if (timestamp - lastUpdate > (1000 / FPS_LIMIT)) {
+    
+                    currentTime += (targetTime - currentTime) * SMOOTHNESS;
+                    video.currentTime = currentTime;
+    
+                    lastUpdate = timestamp;
+                }
+    
                 requestAnimationFrame(smoothScrollVideo);
             }
-
-            smoothScrollVideo();
+    
+            requestAnimationFrame(smoothScrollVideo);
         });
     </script>
-
 </body>
 </html>
