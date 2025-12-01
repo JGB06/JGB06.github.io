@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorpresa Yazmin</title>
+    <title>Video Scroll iPhone Optimizado</title>
+
     <style>
         body {
             margin: 0;
-            background: #111;
+            background: black;
             font-family: Arial, sans-serif;
         }
 
@@ -16,87 +17,104 @@
             top: 0;
             width: 100%;
             height: 100vh;
+            background: black;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: black;
-            overflow: hidden;
         }
 
         video {
             width: 100%;
             height: auto;
+            object-fit: cover;
         }
 
-        h1 {
+        #titleText {
             position: absolute;
             top: 20vh;
             width: 100%;
             text-align: center;
-            font-size: 2.5rem;
             color: white;
+            font-size: 2rem;
             opacity: 1;
             transition: opacity 0.8s ease;
             pointer-events: none;
         }
     </style>
 </head>
+
 <body>
 
     <div class="video-container">
-        <h1 id="titleText">Desliza abajo para avanzar</h1>
-        <video id="scrollVideo" src="video.mp4" preload="auto"></video>
-    </div>
+        <h1 id="titleText">Scroll para avanzar</h1>
 
-    <script>
-        const video = document.getElementById('scrollVideo');
-        const title = document.getElementById('titleText');
+        <!-- IMPORTANTE PARA iPHONE: playsinline + muted + preload + disableRemotePlayback -->
+        <video 
+            id="scrollVideo" 
+            src="video.mp4" 
+            preload="auto"
+            muted
+            playsinline
+            webkit-playsinline 
+            disableRemotePlayback>
+        </video>
+    </div>
     
-        const SCROLL_FACTOR = 600;
-        let targetTime = 0;
-        let currentTime = 0;
-        const SMOOTHNESS = 0.08;
-    
-        let lastUpdate = 0;
-        const FPS_LIMIT = 12; // Limitar actualizaciones a 12 FPS
-    
-        video.addEventListener('loadedmetadata', () => {
-            const duration = video.duration;
-    
-            document.body.style.height = (duration * SCROLL_FACTOR) + "px";
-    
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.scrollY;
-                const maxScroll = document.body.scrollHeight - window.innerHeight;
-    
-                const scrollFraction = scrollTop / maxScroll;
-                const clamped = Math.min(Math.max(scrollFraction, 0), 1);
-    
-                targetTime = clamped * duration;
-    
-                if (scrollTop > 30) {
-                    title.style.opacity = 0;
-                } else {
-                    title.style.opacity = 1;
-                }
-            });
-    
-            function smoothScrollVideo(timestamp) {
-    
-                // Limitar FPS
-                if (timestamp - lastUpdate > (1000 / FPS_LIMIT)) {
-    
-                    currentTime += (targetTime - currentTime) * SMOOTHNESS;
-                    video.currentTime = currentTime;
-    
-                    lastUpdate = timestamp;
-                }
-    
-                requestAnimationFrame(smoothScrollVideo);
+
+<script>
+const video = document.getElementById("scrollVideo");
+const title = document.getElementById("titleText");
+
+// Mucho más scroll para avanzar
+const SCROLL_FACTOR = 650;
+
+// iOS necesita FPS BAJOS
+const FPS_LIMIT = 10;
+
+let targetTime = 0;
+let currentTime = 0;
+let lastUpdate = 0;
+const SMOOTHNESS = 0.10;
+
+// Asegurar que Safari cargue el video
+video.addEventListener("loadeddata", () => {
+    const duration = video.duration;
+
+    // Scroll muy largo
+    document.body.style.height = (duration * SCROLL_FACTOR) + "px";
+
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+
+        const progress = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+        targetTime = progress * duration;
+
+        // Fade del texto
+        title.style.opacity = scrollTop > 20 ? 0 : 1;
+    });
+
+    // Loop con FPS limitado para iPhone
+    function updateVideo(timestamp) {
+        if (timestamp - lastUpdate > (1000 / FPS_LIMIT)) {
+
+            // Lerp
+            currentTime += (targetTime - currentTime) * SMOOTHNESS;
+
+            // Safari: evitar posiciones inválidas
+            if (!isNaN(currentTime)) {
+                video.currentTime = currentTime;
             }
-    
-            requestAnimationFrame(smoothScrollVideo);
-        });
-    </script>
+
+            lastUpdate = timestamp;
+        }
+
+        requestAnimationFrame(updateVideo);
+    }
+
+    requestAnimationFrame(updateVideo);
+});
+</script>
+
 </body>
 </html>
