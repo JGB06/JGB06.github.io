@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Controlado por Scroll</title>
+    <title>Sorpresa Yazmin</title>
     <style>
         body {
             margin: 0;
             background: #111;
-            color: white;
             font-family: Arial, sans-serif;
         }
 
@@ -21,6 +20,7 @@
             justify-content: center;
             align-items: center;
             background: black;
+            overflow: hidden;
         }
 
         video {
@@ -30,30 +30,40 @@
 
         h1 {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 10;
+            top: 20vh;
+            width: 100%;
+            text-align: center;
+            font-size: 2.5rem;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
     <div class="video-container">
-        <h1>Scroll para avanzar el video</h1>
+        <h1 id="titleText">Scroll para avanzar el video</h1>
         <video id="scrollVideo" src="video.mp4" preload="auto"></video>
     </div>
 
     <script>
         const video = document.getElementById('scrollVideo');
+        const title = document.getElementById('titleText');
 
-        // FACTOR para hacer el scroll más largo
-        const SCROLL_FACTOR = 200; 
-        // mientras más alto, más largo el scroll necesario
+        // 🔥 Ahora requiere MUCHÍSIMO scroll para avanzar el video
+        const SCROLL_FACTOR = 600;  // antes 200
+
+        // Scroll suave (lerp)
+        let targetTime = 0;
+        let currentTime = 0;
+        const SMOOTHNESS = 0.08;
 
         video.addEventListener('loadedmetadata', () => {
-            const duration = video.duration; // en tu caso ~45 segundos
+            const duration = video.duration; 
 
-            // Ajustar automáticamente la altura de la página
+            // 🔥 Mucho más alto el documento
             document.body.style.height = (duration * SCROLL_FACTOR) + "px";
 
             window.addEventListener('scroll', () => {
@@ -63,8 +73,24 @@
                 const scrollFraction = scrollTop / maxScroll;
                 const clamped = Math.min(Math.max(scrollFraction, 0), 1);
 
-                video.currentTime = clamped * duration;
+                targetTime = clamped * duration;
+
+                // Fade del texto al hacer scroll
+                if (scrollTop > 30) {
+                    title.style.opacity = 0;
+                } else {
+                    title.style.opacity = 1;
+                }
             });
+
+            // Suavizado del avance del video
+            function smoothScrollVideo() {
+                currentTime += (targetTime - currentTime) * SMOOTHNESS;
+                video.currentTime = currentTime;
+                requestAnimationFrame(smoothScrollVideo);
+            }
+
+            smoothScrollVideo();
         });
     </script>
 
